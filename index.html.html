@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box;}
+
+/* COLORES */
+:root{
+--verde:#1b3a1f;
+--verde-linea:#122a16;
+--beige:#f5f0e6;
+}
+
+/* BODY */
+body{
+font-family:Helvetica, Arial, sans-serif;
+}
+
+/* HEADER */
+#header{
+position:fixed;
+top:0;
+width:100%;
+height:75px;
+background-color:var(--verde);
+background-image:url('c:/Users/Usuario/Pictures/logo JF.png');
+background-repeat:repeat;
+background-size:55px;
+background-position:center;
+display:flex;
+align-items:center;
+justify-content:flex-start;
+padding:0 20px;
+z-index:1000;
+}
+
+/* LOGOS */
+#header::after{
+content:"";
+position:absolute;
+top:0;left:0;
+width:100%;height:100%;
+background-image:url("c:/Users/Usuario/Pictures/logo JF.png");
+background-repeat:repeat;
+background-size:55px;
+filter:brightness(0) saturate(100%) invert(92%);
+opacity:0.18;
+z-index:0;
+}
+
+/* ENCIMA */
+#header > *{position:relative;z-index:2;}
+
+/* IZQUIERDA */
+.left-group{display:flex;align-items:center;}
+
+/* CAPA OSCURA */
+#header::before{
+content:"";
+position:absolute;
+width:100%;
+height:100%;
+background:rgba(27,58,31,0.93);
+top:0;
+left:0;
+z-index:0;
+}
+
+#header > *{
+position:relative;
+z-index:1;
+}
+
+/* IZQUIERDA */
+.left-group{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+/* HAMBURGUESA */
+.hamburguesa{
+width:32px;
+height:24px;
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+cursor:pointer;
+}
+
+.hamburguesa span{
+height:3px;
+background:white;
+border-radius:3px;
+transition:0.4s;
+}
+
+.hamburguesa.active span:nth-child(1){
+transform:rotate(45deg) translate(6px,6px);
+}
+.hamburguesa.active span:nth-child(2){
+opacity:0;
+}
+.hamburguesa.active span:nth-child(3){
+transform:rotate(-45deg) translate(6px,-6px);
+}
+
+/* LOGO CENTRADO */
+.logo-centro{
+position:absolute;
+left:50%;
+transform:translateX(-125%);
+height:100%;
+display:flex;
+align-items:center;
+}
+
+.logo-centro img{
+max-height:72px;
+width:auto;
+object-fit:contain;
+filter:brightness(0) saturate(100%) invert(92%) sepia(20%) saturate(200%) hue-rotate(10deg);
+}
+
+/* CONTACTO */
+.contacto-box{
+position:relative;
+display:flex;
+align-items:center;
+gap:12px;
+margin-left:6px;
+}
+
+.contacto-icon{
+width:50px;
+height:50px;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+border-radius:50%;
+}
+
+.contacto-icon svg{
+width:34px;
+height:34px;
+fill:white;
+}
+
+/* SUBMENÚ ABAJO (CORREGIDO) */
+.contacto-submenu{
+position:absolute;
+top:60px;
+left:0;
+
+display:none;
+background:var(--verde);
+padding:8px 16px;
+border-radius:20px;
+border:1px solid var(--verde-linea);
+white-space:nowrap;
+
+opacity:0;
+transform:translateY(-10px);
+transition:0.3s;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+.contacto-submenu.active{
+display:block;
+opacity:1;
+transform:translateY(0);
+}
+
+.contacto-submenu a{
+color:var(--beige);
+text-decoration:none;
+font-size:14px;
+}
+
+/* MENÚ */
+.menu-lateral{
+position:fixed;
+top:0;
+left:-300px;
+width:300px;
+height:100%;
+background:var(--verde);
+padding:90px 25px;
+transition:0.4s;
+display:flex;
+flex-direction:column;
+z-index:999;
+}
+
+.menu-lateral.active{
+left:0;
+}
+
+.menu-lateral > *{
+padding:15px 0;
+border-bottom:1px solid var(--verde-linea);
+}
+
+.menu-lateral a{
+color:white;
+text-decoration:none;
+font-size:16px;
+}
+
+.submenu-titulo{
+color:white;
+cursor:pointer;
+font-size:16px;
+}
+
+.submenu-contenido{
+max-height:0;
+overflow:hidden;
+transition:0.3s;
+display:flex;
+flex-direction:column;
+gap:10px;
+padding-left:10px;
+}
+
+.submenu-contenido a,
+.submenu-contenido p{
+color:var(--beige);
+font-size:14px;
+line-height:1.5;
+text-decoration:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<header id="header">
+
+<div class="left-group">
+
+<div class="hamburguesa" id="hamburguesa">
+<span></span>
+<span></span>
+<span></span>
+</div>
+
+<div class="contacto-box">
+
+<div class="contacto-icon" id="btnContacto">
+<svg viewBox="0 0 24 24">
+<circle cx="12" cy="7" r="4"/>
+<path d="M4 20c0-4 4-6 8-6s8 2 8 6"/>
+</svg>
+</div>
+
+<div class="contacto-submenu" id="contactoSubmenu">
+<a href="https://wa.me/34602687285" target="_blank">
++34 602 687 285
+</a>
+</div>
+
+</div>
+
+</div>
+
+<div class="logo-centro">
+<img src="c:/Users/Usuario/Pictures/logo JF.png" alt="logo">
+</div>
+
+</header>
+
+<div id="menuLateral" class="menu-lateral">
+
+<a href="#">Productos</a>
+
+<div class="submenu">
+<div class="submenu-titulo">Ubicación</div>
+<div class="submenu-contenido">
+<p>Plaza Tirso de Molina<br>Kiosco #5 CP 28012</p>
+</div>
+</div>
+
+<div class="submenu">
+<div class="submenu-titulo">Ocasiones</div>
+<div class="submenu-contenido">
+<a href="#">Aniversario</a>
+<a href="#">Cumpleaños</a>
+<a href="#">Nacimientos</a>
+<a href="#">Gratitud y Perdón</a>
+<a href="#">Funerarios</a>
+</div>
+</div>
+
+<div class="submenu">
+<div class="submenu-titulo">Pedidos</div>
+<div class="submenu-contenido">
+<p>
+¡Bienvenidos a nuestro jardín digital! 🌸🍃<br><br>
+Transformamos emociones en flores.<br><br>
+✅ Bouquets personalizados<br>
+✅ Envíos a domicilio<br><br>
+Haz tu pedido vía WhatsApp 📲
+</p>
+</div>
+</div>
+
+</div>
+
+<script>
+
+const burger = document.getElementById("hamburguesa");
+const menu = document.getElementById("menuLateral");
+
+burger.addEventListener("click", ()=>{
+burger.classList.toggle("active");
+menu.classList.toggle("active");
+});
+
+const btn = document.getElementById("btnContacto");
+const submenu = document.getElementById("contactoSubmenu");
+
+btn.addEventListener("click", ()=>{
+submenu.classList.toggle("active");
+});
+
+document.querySelectorAll(".submenu-titulo").forEach(item=>{
+item.addEventListener("click", ()=>{
+let content = item.nextElementSibling;
+content.style.maxHeight = content.style.maxHeight ? null : content.scrollHeight + "px";
+});
+});
+
+</script>
+
+</body>
+</html>
